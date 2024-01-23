@@ -1,5 +1,4 @@
 const path = require('path');
-
 const { HotModuleReplacementPlugin, DefinePlugin } = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
@@ -12,16 +11,24 @@ const DEV_PLUGINS = [
   new HotModuleReplacementPlugin(),
   new CleanWebpackPlugin(),
 ];
-const env = require('dotenv').config({
-  path: path.resolve(__dirname, `../.env.${NODE_ENV}`),
-}).parsed;
 
-const envKeys = Object.keys(env).reduce((acc, key) => {
-  acc[`process.env.${key}`] = JSON.stringify(env[key]);
-  return acc;
-}, {});
+function getEnvPath() {
+  return IS_PROD
+    ? {}
+    : {
+        path: path.resolve(__dirname, `../.env.${NODE_ENV}`),
+      };
+}
 
-const COMMON_PLUGINS = [new DefinePlugin(envKeys)];
+require('dotenv').config(getEnvPath());
+
+const COMMON_PLUGINS = [
+  new DefinePlugin({
+    'process.env.CLIENT_ID': `'${process.env.CLIENT_ID}'`,
+    'process.env.SECRET': `'${process.env.SECRET}'`,
+    'process.env.HOST': `'${process.env.HOST}'`,
+  }),
+];
 
 function setupDevtool() {
   if (IS_DEV) return 'eval';

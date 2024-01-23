@@ -1,19 +1,19 @@
 const path = require('path');
-
 const { DefinePlugin } = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const GLOBAL_CSS_REGEXP = /\.global\.css$/;
 
-const env = require('dotenv').config({
-  path: path.resolve(__dirname, `../.env.${NODE_ENV}`),
-}).parsed;
+function getEnvPath() {
+  return NODE_ENV === 'production'
+    ? {}
+    : {
+        path: path.resolve(__dirname, `../.env.${NODE_ENV}`),
+      };
+}
 
-const envKeys = Object.keys(env).reduce((acc, key) => {
-  acc[`process.env.${key}`] = JSON.stringify(env[key]);
-  return acc;
-}, {});
+require('dotenv').config(getEnvPath());
 
 module.exports = {
   target: 'node',
@@ -58,5 +58,11 @@ module.exports = {
   optimization: {
     minimize: false,
   },
-  plugins: [new DefinePlugin(envKeys)],
+  plugins: [
+    new DefinePlugin({
+      'process.env.CLIENT_ID': `'${process.env.CLIENT_ID}'`,
+      'process.env.SECRET': `'${process.env.SECRET}'`,
+      'process.env.HOST': `'${process.env.HOST}'`,
+    }),
+  ],
 };

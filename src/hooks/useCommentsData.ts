@@ -27,7 +27,7 @@ export function useCommentsData(postId: string) {
 
   useEffect(() => {
     axios
-      .get(`http://oauth.reddit.com/comments/${postId}.json`)
+      .get(`https://oauth.reddit.com/comments/${postId}.json`)
       .then((resp) => {
         const commentsDataChildrenFromApi: ICommentChildFromApi[] =
           resp.data[1].data.children;
