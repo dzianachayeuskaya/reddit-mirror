@@ -1,0 +1,14 @@
+.sortBlock {
+    padding-bottom: 13px;
+    border-bottom: 1px solid var(--greyD9);
+    margin-bottom: 50px;
+}
+
+.select {
+    border: none;
+    color: var(--orange)
+}
+
+.select:focus-visible {
+    outline: 1px solid var(--orange);
+}

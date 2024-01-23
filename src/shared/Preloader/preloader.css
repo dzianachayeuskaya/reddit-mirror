@@ -1,0 +1,30 @@
+.elem {
+  width: 50px;
+}
+
+.circle {
+  fill: none;
+  stroke: var(--grey99);
+  stroke-width: 0.3;
+  stroke-linecap: round;
+  animation: round 3s linear infinite forwards;
+  transform-origin: center;
+}
+
+@keyframes round {
+  0% {
+    stroke-dasharray: 0.3 0.9 0.3 0.6;
+    transform: rotate(0deg);
+  }
+
+  100% {
+    stroke-dasharray: 0.9 0.9 0.9 0.9 4.4;
+    transform: rotate(360deg);
+  }
+}
+
+@media (min-width: 1024px) {
+  .elem {
+    width: 100px;
+  }
+}

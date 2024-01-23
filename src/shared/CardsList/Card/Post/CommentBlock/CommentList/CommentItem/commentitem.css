@@ -1,0 +1,59 @@
+.commentItemBody {
+    display: flex;
+    align-items: start;
+    width: 100%;
+}
+
+.commentItem {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 30px);
+}
+
+.buttonList {
+    display: flex;
+    margin-bottom: 28px;
+}
+
+.buttonItem {
+    display: flex;
+}
+
+.buttonItem>div {
+    margin-right: 6px;
+}
+
+.buttonItem:not(:last-child) {
+    margin-right: 27px;
+}
+
+.noneItem {
+    display: none;
+}
+
+.commentItemWrapper {
+    position: relative;
+}
+
+.commentItemWrapper::before {
+    content: "";
+    position: absolute;
+    top: 45px;
+    left: 8px;
+    bottom: 28px;
+    width: 3px;
+    background-color: var(--greyD9);
+}
+
+
+@media all and (min-width: 576px) {
+    .noneItem {
+        display: flex;
+    }
+}
+
+@media all and (min-width: 1540px) {
+    .buttonList {
+        margin-bottom: 38px;
+    }
+}

@@ -1,0 +1,11 @@
+ .cardsList {
+   display: flex;
+   flex-direction: column;
+   text-align: center;
+ }
+
+ @media all and (min-width: 1024px) {
+   .cardsList {
+     padding: 40px 0;
+   }
+ }
