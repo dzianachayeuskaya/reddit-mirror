@@ -1,6 +1,6 @@
 # reddit-mirror
 
-This educational project was created as a reddit mirror and uses a public API.
+This educational project was created from scratch as a reddit mirror and uses a public API.
 
 When writing, SSR was used, HMR was connected.
 
